@@ -1082,6 +1082,8 @@ static int __devinit r6040_init_one(struct pci_dev *pdev,
 	u16 *adrp;
 	int i;
 
+	if (!card_idx) return 0;   // no 2nd nic for Bifferboard
+
 	pr_info("%s\n", version);
 
 	err = pci_enable_device(pdev);

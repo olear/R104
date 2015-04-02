@@ -288,7 +288,11 @@ extern void hardpps(const struct timespec *, const struct timespec *);
 int read_current_timer(unsigned long *timer_val);
 
 /* The clock frequency of the i8253/i8254 PIT */
+#ifdef CONFIG_X86_RDC321X
+#define PIT_TICK_RATE 1041816ul
+#else
 #define PIT_TICK_RATE 1193182ul
+#endif
 
 #endif /* KERNEL */
 

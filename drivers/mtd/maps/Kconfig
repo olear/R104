@@ -535,4 +535,16 @@ config MTD_LATCH_ADDR
 
           If compiled as a module, it will be called latch-addr-flash.
 
+config MTD_BIFFERBOARD
+	tristate "Map driver for Bifferboard"
+	depends on X86_RDC321X
+	select MTD_PARTITIONS
+	help
+	  This driver enables access to the Bifferboard flash
+
+	  Most Bifferboard users will want to say Y here.
+
+	  To build this as a module select M here, the module will be called
+	  bifferboard-flash.
+
 endmenu

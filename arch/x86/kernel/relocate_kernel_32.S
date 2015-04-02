@@ -54,8 +54,10 @@ relocate_kernel:
 	movl	%eax, CR0(%edi)
 	movl	%cr3, %eax
 	movl	%eax, CR3(%edi)
+#ifndef CONFIG_X86_RDC321X
 	movl	%cr4, %eax
 	movl	%eax, CR4(%edi)
+#endif
 
 	/* read the arguments and say goodbye to the stack */
 	movl  20+4(%esp), %ebx /* page_list */
@@ -124,7 +126,9 @@ identity_mapped:
 	 * Setting everything to zero seems safe.
 	 */
 	xorl	%eax, %eax
+#ifndef CONFIG_X86_RDC321X
 	movl	%eax, %cr4
+#endif
 
 	jmp 1f
 1:
@@ -195,8 +199,10 @@ identity_mapped:
 	ret
 
 virtual_mapped:
+#ifndef CONFIG_X86_RDC321X
 	movl	CR4(%edi), %eax
 	movl	%eax, %cr4
+#endif
 	movl	CR3(%edi), %eax
 	movl	%eax, %cr3
 	movl	CR0(%edi), %eax

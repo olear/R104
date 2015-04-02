@@ -490,9 +490,14 @@ void __init mount_root(void)
 			change_floppy("root floppy");
 	}
 #endif
+/* Biff: Maybe INITRD should take precedence over other root devices if 
+         configured?
+*/
+#ifndef CONFIG_BLK_DEV_INITRD
 #ifdef CONFIG_BLOCK
 	create_dev("/dev/root", ROOT_DEV);
 	mount_block_root("/dev/root", root_mountflags);
+#endif
 #endif
 }
 

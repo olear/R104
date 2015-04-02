@@ -386,6 +386,13 @@ config I2C_GPIO
 	  This is a very simple bitbanging I2C driver utilizing the
 	  arch-neutral GPIO API to control the SCL and SDA lines.
 
+config I2C_GPIO_CUSTOM
+       tristate "GPIO-based bitbanging I2C"
+       depends on I2C_GPIO
+       help
+         This is module allows configuration of GPIO pins for i2c
+         via the kernel command-line or module loading parameters.
+
 config I2C_HIGHLANDER
 	tristate "Highlander FPGA SMBus interface"
 	depends on SH_HIGHLANDER
